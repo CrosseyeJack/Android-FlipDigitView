@@ -1,9 +1,11 @@
-package com.vinayrraj.flipdigit.lib;
+package de.corazza.flipdigit.lib;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import de.corazza.flipdigit.lib.R;
 
 /**
  * @author VinayrajSingh
@@ -13,9 +15,11 @@ public class Flipmeter extends LinearLayout {
 	private static final int NUM_DIGITS = 6;
 
 	private int mCurrentValue;
-	private int animationCompleteCounter = 0;
-
 	private FlipmeterSpinner[] mDigitSpinners;
+
+	private boolean countUp;
+
+	private int flipMode;
 
 	public Flipmeter(Context context) {
 		super(context);
@@ -25,7 +29,11 @@ public class Flipmeter extends LinearLayout {
 
 	public Flipmeter(Context context, AttributeSet attrs) {
 		super(context, attrs);
-
+		TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.Flipmeter);
+		countUp = arr.getBoolean(R.styleable.Flipmeter_countUp, true);
+		flipMode = arr.getInteger(R.styleable.Flipmeter_flipMode, 0);
+		
+		arr.recycle(); 
 		initialize();
 	}
 
@@ -44,6 +52,11 @@ public class Flipmeter extends LinearLayout {
 		mDigitSpinners[3] = (FlipmeterSpinner) findViewById(R.id.widget_flipmeter_spinner_1k);
 		mDigitSpinners[4] = (FlipmeterSpinner) findViewById(R.id.widget_flipmeter_spinner_10k);
 		mDigitSpinners[5] = (FlipmeterSpinner) findViewById(R.id.widget_flipmeter_spinner_100k);
+		
+		for (FlipmeterSpinner meter : mDigitSpinners) {
+			meter.setCountUp(countUp);
+			meter.setFlipMode(flipMode);
+		}
 
 	}
 
@@ -58,21 +71,9 @@ public class Flipmeter extends LinearLayout {
 			int digitVal = (int) Math.floor(tempValue / factor);
 			tempValue -= (digitVal * factor);
 			mDigitSpinners[i].setDigit(digitVal, withAnimation);
-			changeAnimationCompleteCounter(withAnimation);
 		}
 
 		mDigitSpinners[0].setDigit(tempValue, withAnimation);
-		changeAnimationCompleteCounter(withAnimation);
-
-	}
-
-	private synchronized int changeAnimationCompleteCounter(Boolean increment) {
-		if (increment == null)
-			return animationCompleteCounter;
-		else if (increment)
-			return ++animationCompleteCounter;
-		else
-			return --animationCompleteCounter;
 	}
 
 	/**

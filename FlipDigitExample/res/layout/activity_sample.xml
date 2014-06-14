@@ -7,13 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SampleActivity" >
+    tools:context=".SampleActivity" xmlns:app="http://schemas.android.com/apk/res/com.vinayrraj.flipdigitexample">
 
-    <com.vinayrraj.flipdigit.lib.Flipmeter
+    <de.corazza.flipdigit.lib.Flipmeter
         android:id="@+id/Flipmeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        app:flipMode="allNumbers"
+        app:countUp="false"
         android:layout_marginTop="30dip" />
 
     <EditText

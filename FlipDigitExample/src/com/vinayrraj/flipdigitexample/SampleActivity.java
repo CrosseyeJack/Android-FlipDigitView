@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-import com.vinayrraj.flipdigit.lib.Flipmeter;
+import de.corazza.flipdigit.lib.Flipmeter;
 
 public class SampleActivity extends Activity {
 

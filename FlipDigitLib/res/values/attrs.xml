@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <declare-styleable name="Flipmeter">
+       <attr name="countUp" format="boolean" />
+       <attr name="flipMode" format="enum">
+           <enum name="allNumbers" value="0"/>
+           <enum name="fast" value="1"/>
+       </attr>
+   </declare-styleable>
+</resources>

@@ -1,13 +1,14 @@
-package com.vinayrraj.flipdigit.lib;
+package de.corazza.flipdigit.lib;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
+import de.corazza.flipdigit.lib.R;
 
 /**
- * @author VinayrajSingh
+ * @author mc02
  * 
  */
 public class FlipmeterSpinner extends RelativeLayout {
@@ -18,6 +19,10 @@ public class FlipmeterSpinner extends RelativeLayout {
 	private int mCurrentDigit;
 
 	private FlipDigit flipDigit = null;
+	
+	private boolean countUp = true;
+	private int flipMode = 0;
+	
 
 	/*
 	 * Simple constructor used when creating a view from code.
@@ -74,6 +79,22 @@ public class FlipmeterSpinner extends RelativeLayout {
 
 	public int getCurrentDigit() {
 		return mCurrentDigit;
+	}
+
+	public boolean isCountUp() {
+		return flipDigit.isCountUp();
+	}
+
+	public void setCountUp(boolean countUp) {
+		flipDigit.setCountUp(countUp);
+	}
+
+	public int getFlipMode() {
+		return flipDigit.getFlipMode();
+	}
+
+	public void setFlipMode(int flipMode) {
+		flipDigit.setFlipMode(flipMode);
 	}
 
 }
